@@ -1,0 +1,282 @@
+!
+version 16.3.2
+service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname MLT-Sw1
+!
+!
+enable secret 5 $1$mERr$y5z733h4ZklGcxu/cMHYN/
+!
+!
+!
+!
+!
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+!
+!
+username Bank secret 5 $1$mERr$y5z733h4ZklGcxu/cMHYN/
+username sherif secret 5 $1$mERr$ofUWjb4x102tcvHk8Hzu8/
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name Bank
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/1
+ no switchport
+ ip address 172.16.3.145 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/2
+ no switchport
+ ip address 172.16.3.149 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/3
+!
+interface GigabitEthernet1/0/4
+!
+interface GigabitEthernet1/0/5
+!
+interface GigabitEthernet1/0/6
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+ switchport mode trunk
+ channel-group 1 mode passive
+!
+interface GigabitEthernet1/0/11
+ switchport mode trunk
+ channel-group 1 mode passive
+!
+interface GigabitEthernet1/0/12
+ switchport mode trunk
+ channel-group 1 mode passive
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 000d.bd9d.8e01
+ ip address 172.16.1.125 255.255.255.128
+ ip helper-address 172.16.3.132
+ ip access-group Service-Only in
+ standby version 2
+ standby 10 ip 172.16.1.50
+ standby 10 preempt
+!
+interface Vlan20
+ mac-address 000d.bd9d.8e02
+ ip address 172.16.1.253 255.255.255.128
+ ip helper-address 172.16.3.132
+ ip access-group Service-Only in
+ standby version 2
+ standby 20 ip 172.16.1.140
+ standby 20 preempt
+!
+interface Vlan25
+ mac-address 000d.bd9d.8e03
+ ip address 10.10.0.2 255.255.0.0
+ ip helper-address 172.16.3.132
+ ip access-group wlan-list in
+!
+interface Vlan30
+ mac-address 000d.bd9d.8e04
+ ip address 172.16.2.125 255.255.255.128
+ ip helper-address 172.16.3.132
+ ip access-group Service-Only in
+ standby version 2
+ standby 30 ip 172.16.2.50
+ standby 30 preempt
+!
+interface Vlan35
+ mac-address 000d.bd9d.8e05
+ ip address 192.168.10.2 255.255.255.0
+ ip helper-address 172.16.3.132
+!
+interface Vlan40
+ mac-address 000d.bd9d.8e06
+ ip address 172.16.2.253 255.255.255.128
+ ip helper-address 172.16.3.132
+ ip access-group Service-Only in
+ standby version 2
+ standby 40 ip 172.16.2.140
+ standby 40 preempt
+!
+interface Vlan50
+ mac-address 000d.bd9d.8e07
+ ip address 172.16.3.125 255.255.255.128
+ ip helper-address 172.16.3.132
+ ip access-group Service-Only in
+ standby version 2
+ standby 50 ip 172.16.3.50
+ standby 50 preempt
+!
+interface Vlan60
+ mac-address 000d.bd9d.8e08
+ ip address 172.16.3.141 255.255.255.240
+ ip helper-address 172.16.3.132
+ standby version 2
+ standby 60 ip 172.16.3.140
+ standby 60 preempt
+!
+router ospf 10
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 172.16.1.0 0.0.0.127 area 0
+ network 172.16.2.0 0.0.0.127 area 0
+ network 172.16.1.128 0.0.0.127 area 0
+ network 172.16.2.128 0.0.0.127 area 0
+ network 172.16.3.0 0.0.0.127 area 0
+ network 172.16.3.128 0.0.0.15 area 0
+ network 172.16.3.144 0.0.0.3 area 0
+ network 172.16.3.148 0.0.0.3 area 0
+ network 10.10.0.0 0.0.255.255 area 0
+ network 192.168.10.0 0.0.0.255 area 0
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1/0/1 
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1/0/2 70
+!
+ip flow-export version 9
+!
+!
+ip access-list extended Service-Only
+ permit udp any eq bootpc any eq bootps
+ permit udp any any eq domain
+ permit tcp any any eq 443
+ permit tcp any any eq www
+ permit tcp any any eq smtp
+ permit tcp any any eq 587
+ permit udp any any eq 514
+ permit udp any any eq 123
+ permit esp any any
+ permit ahp any any
+ permit udp any any eq isakmp
+ permit udp any any eq tftp
+ deny ip any 172.16.3.128 0.0.0.15
+ permit ip any any
+ip access-list extended wlan-list
+ permit udp any eq bootpc any eq bootps
+ permit udp any any eq domain
+ permit tcp any any eq 443
+ permit tcp any any eq www
+ permit tcp any any eq smtp
+ permit tcp any any eq 587
+ permit udp any any eq 514
+ permit udp any any eq 123
+ permit esp any any
+ permit ahp any any
+ permit udp any any eq isakmp
+ permit udp any any eq tftp
+ permit udp any any eq 5246
+ permit udp any any eq 5247
+ deny ip any 172.16.3.128 0.0.0.15
+ permit ip any any
+ip access-list extended SSH-ACCESS
+ permit tcp 192.168.10.0 0.0.0.255 any eq 22
+ permit tcp 192.168.11.0 0.0.0.255 any eq 22
+ deny ip any any
+!
+banner motd "No unauthorized Access!!##"
+!
+!
+!
+!
+logging trap debugging
+logging 172.16.3.134
+line con 0
+ password 7 08031A185F4F
+ logging synchronous
+ login local
+!
+line aux 0
+!
+line vty 0 4
+ access-class SSH-ACCESS in
+ password 7 08031A185F4F
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ password 7 08771A185F
+ logging synchronous
+ login local
+ transport input ssh
+!
+!
+!
+ntp authentication-key 1 md5 08771A185F 7
+ntp authenticate
+ntp trusted-key 1
+ntp server 172.16.3.133
+ntp update-calendar
+!
+end
+
