@@ -18,7 +18,8 @@ The FutureNet infrastructure consists of a hierarchical design with separate phy
 ### **HQ and Branch Network Overview**
 The following diagram illustrates the physical and logical topologies of the FutureNet infrastructure:
 
-![Network Architecture Diagram](Documentation/Network%20Design/Physical_Topology_Diagram.png)
+![HQ](https://github.com/user-attachments/assets/38e89d7b-6a37-48db-9f69-4fa8203e029e)
+![Branch](https://github.com/user-attachments/assets/16bfb05a-ceb4-4c80-b45f-30a2264d4fe3)
 
 Key devices include Cisco routers and switches configured with HSRP and EtherChannel, ensuring both redundancy and optimized traffic flow.
 
