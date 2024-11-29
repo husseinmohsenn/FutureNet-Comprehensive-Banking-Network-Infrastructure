@@ -15,11 +15,10 @@ FutureNet is a secure, scalable, and resilient network infrastructure designed s
 
 ## Network Architecture
 The FutureNet infrastructure consists of a hierarchical design with separate physical and logical topologies. The physical layout connects headquarters to branch offices through secure VPN tunnels, while the logical topology segments the network into VLANs, providing secure, isolated domains for different departments. 
-
 ### **HQ and Branch Network Overview**
 The following diagram illustrates the physical and logical topologies of the FutureNet infrastructure:
 
-![Network Architecture Diagram](Documentation/Network%20Design/Physical_Topology_Diagram.md)
+![Network Architecture Diagram](Documentation/Network%20Design/Physical_Topology_Diagram.png)
 
 Key devices include Cisco routers and switches configured with HSRP and EtherChannel, ensuring both redundancy and optimized traffic flow.
 
@@ -54,6 +53,6 @@ This network infrastructure meets the bank’s operational needs while maintaini
 ## Contact Information
 For questions or collaboration inquiries, feel free to reach out:
 
-LinkedIn: https://www.linkedin.com/in/hussein-mohsen-a36a022a4  
-Email: mohsenhussien775@gmail.com  
-Phone: +201280475318
+- LinkedIn: [https://www.linkedin.com/in/hussein-mohsen-a36a022a4](https://www.linkedin.com/in/hussein-mohsen-a36a022a4)
+- Email: [mohsenhussien775@gmail.com](mailto:mohsenhussien775@gmail.com)
+- Phone: +201280475318
